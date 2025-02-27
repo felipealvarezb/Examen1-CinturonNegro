@@ -8,5 +8,5 @@ public interface GenderService {
 
   Gender updateGender(Long id, Gender gender);
 
-  void deleteGender(Long id);
+  String deleteGender(Long id);
 }

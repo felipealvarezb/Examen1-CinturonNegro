@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface BookGenderDetailRepository extends JpaRepository<BookGenderDetail, Long> {
-  boolean existsByBookAndGender(Book book, Gender gender);
 
-  @Query("SELECT bgd FROM BookGenderDetail bgd WHERE bgd.book.id = :bookId AND bgd.gender.id = :genderId")
-  Optional<BookGenderDetail> findByBookIdAndGenderId(Long bookId, Long genderId);
+  boolean existsByBookIdAndGenderId(Long bookId, Long genderId);
+
+  BookGenderDetail findByBookIdAndGenderId(Long bookId, Long genderId);
 }

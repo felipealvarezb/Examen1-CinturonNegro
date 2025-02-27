@@ -11,7 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class GenderResponseDTO {
 
-  private Long genderId;
   private String name;
   private Date createdAt;
   private Date updatedAt;

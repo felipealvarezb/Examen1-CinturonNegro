@@ -4,35 +4,22 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
-
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class BookGenderDetail {
+@Data
+public class  BookGenderDetail {
 
   @Id
-  @Column(name = "id_book_gender", unique = true, nullable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long bookGenderId;
+  private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "id_book", nullable = false)
+  @JoinColumn(name = "book_id")
   private Book book;
 
   @ManyToOne
-  @JoinColumn(name = "id_gender", nullable = false)
+  @JoinColumn(name = "gender_id")
   private Gender gender;
-
-  @Temporal(TemporalType.TIMESTAMP)
-  @CreationTimestamp
-  private Date createdAt;
-
-  @Temporal(TemporalType.TIMESTAMP)
-  @UpdateTimestamp
-  private Date updatedAt;
 }
