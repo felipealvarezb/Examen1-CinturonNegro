@@ -39,8 +39,8 @@ public class AuthorController {
   }
 
   @DeleteMapping(value = "/{authorId}")
-  public ResponseEntity<Void> deleteAuthor(@PathVariable Long authorId) {
-    authorService.deleteAuthor(authorId);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<String> deleteAuthor(@PathVariable Long authorId) {
+    String message = authorService.deleteAuthor(authorId);
+    return ResponseEntity.ok().body(message);
   }
 }

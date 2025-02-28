@@ -13,11 +13,15 @@ public interface BookService {
 
   List<Book> getBookByEditorial(Long idEditorial);
 
+  Book assignGender(Long bookId, Long genderId);
+
+  Book unassignGender(Long bookId, Long genderId);
+
   Book getBookById(Long id);
 
   Book createBook(Book book, Long authorId, Long editorialId);
 
   Book updateBook(Long id, Book book, Long authorId, Long editorialId);
 
-  void deleteBook(Long id);
+  String deleteBook(Long id);
 }

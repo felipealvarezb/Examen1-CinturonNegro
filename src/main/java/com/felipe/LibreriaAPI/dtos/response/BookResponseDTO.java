@@ -2,25 +2,25 @@ package com.felipe.LibreriaAPI.dtos.response;
 
 import com.felipe.LibreriaAPI.dtos.AuthorDTO;
 import com.felipe.LibreriaAPI.dtos.EditorialDTO;
-import com.felipe.LibreriaAPI.entities.Author;
-import com.felipe.LibreriaAPI.entities.Editorial;
+import com.felipe.LibreriaAPI.dtos.GenderDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookResponseDTO {
 
-  private Long bookId;
+  private Long id;
   private String title;
   private String description;
-  private Author author;
-  private Editorial editorial;
-  private String gender;
+  private AuthorDTO author;
+  private EditorialDTO editorial;
+  private List<GenderDTO> genders;
   private Date createdAt;
   private Date updatedAt;
 }

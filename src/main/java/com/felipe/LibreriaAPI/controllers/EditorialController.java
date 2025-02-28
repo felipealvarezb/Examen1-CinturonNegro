@@ -22,7 +22,7 @@ public class EditorialController {
 
   @PostMapping
   public ResponseEntity<EditorialResponseDTO> createEditorial(@Validated @RequestBody EditorialDTO editorialDTO) {
-    Editorial editorial = editorialMapper.editorialDTOToEditorial(editorialDTO);
+    Editorial editorial = editorialMapper.editorialDtoToEditorial(editorialDTO);
 
     Editorial createdEditorial = editorialService.createEditorial(editorial);
 
@@ -31,7 +31,7 @@ public class EditorialController {
 
   @PutMapping(value = "/{editorialId}")
   public ResponseEntity<EditorialResponseDTO> updateEditorial(@PathVariable Long editorialId, @Validated @RequestBody EditorialDTO editorialDTO) {
-    Editorial editorial = editorialMapper.editorialDTOToEditorial(editorialDTO);
+    Editorial editorial = editorialMapper.editorialDtoToEditorial(editorialDTO);
 
     Editorial updatedEditorial = editorialService.updateEditorial(editorialId, editorial);
 
@@ -39,8 +39,8 @@ public class EditorialController {
   }
 
   @DeleteMapping(value = "/{editorialId}")
-  public ResponseEntity<Void> deleteEditorial(@PathVariable Long editorialId) {
-    editorialService.deleteEditorial(editorialId);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<String> deleteEditorial(@PathVariable Long editorialId) {
+    String message = editorialService.deleteEditorial(editorialId);
+    return ResponseEntity.ok().body(message);
   }
 }

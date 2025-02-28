@@ -1,41 +1,40 @@
 package com.felipe.LibreriaAPI.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
-@Data
+
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Data
 public class Book {
 
   @Id
-  @Column(name = "id_book", unique = true, nullable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long bookId;
+  private Long id;
 
-  @Column(nullable = false)
+  @Column(unique = true, nullable = false)
   private String title;
 
   @Column(nullable = false)
   private String description;
 
   @ManyToOne
-  @JoinColumn(name = "id_author", nullable = false)
-  @JsonManagedReference
+  @JoinColumn(name = "author_id")
   private Author author;
 
   @ManyToOne
-  @JoinColumn(name = "id_editorial", nullable = false)
-  @JsonManagedReference
+  @JoinColumn(name = "editorial_id")
   private Editorial editorial;
+
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<BookGenderDetail> bookGenders;
 
   @Temporal(TemporalType.TIMESTAMP)
   @CreationTimestamp
@@ -45,4 +44,3 @@ public class Book {
   @UpdateTimestamp
   private Date updatedAt;
 }
-

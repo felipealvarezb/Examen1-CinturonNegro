@@ -11,9 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class EditorialResponseDTO {
 
-  private Long editorialId;
   private String name;
-  private String address;
+  private String country;
   private Date createdAt;
   private Date updatedAt;
 }

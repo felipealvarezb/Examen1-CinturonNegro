@@ -11,11 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorResponseDTO {
-  private Long authorId;
+  private Long id;
   private String name;
   private String nationality;
   private int age;
-  private List<BookResponseDTO> books;
   private Date createdAt;
   private Date updatedAt;
 }

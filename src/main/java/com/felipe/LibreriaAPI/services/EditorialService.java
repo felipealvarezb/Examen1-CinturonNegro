@@ -8,5 +8,5 @@ public interface EditorialService {
 
   Editorial updateEditorial(Long id, Editorial editorial);
 
-  void deleteEditorial(Long id);
+  String deleteEditorial(Long id);
 }

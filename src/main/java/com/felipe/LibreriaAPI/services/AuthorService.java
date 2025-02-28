@@ -8,6 +8,6 @@ public interface AuthorService {
 
   Author updateAuthor(Long id, Author author);
 
-  void deleteAuthor(Long id);
+  String deleteAuthor(Long id);
 
 }

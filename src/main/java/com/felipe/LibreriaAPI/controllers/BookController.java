@@ -25,25 +25,37 @@ public class BookController {
   @GetMapping()
   public ResponseEntity<List<BookResponseDTO>> getAllBooks() {
     List<Book> bookList = bookService.getAllBooks();
-    return ResponseEntity.ok().body(bookMapper.listBookToListBookResponseDTO(bookList));
+    return ResponseEntity.ok().body(bookMapper.listBookToListBookResponseDto(bookList));
   }
 
   @GetMapping(value = "/author/{authorId}")
   public ResponseEntity<List<BookResponseDTO>> getBookByAuthor(@PathVariable Long authorId) {
     List<Book> bookList = bookService.getBookByAuthor(authorId);
-    return ResponseEntity.ok().body(bookMapper.listBookToListBookResponseDTO(bookList));
+    return ResponseEntity.ok().body(bookMapper.listBookToListBookResponseDto(bookList));
   }
 
   @GetMapping(value = "/editorial/{editorialId}")
   public ResponseEntity<List<BookResponseDTO>> getBookByEditorial(@PathVariable Long editorialId) {
     List<Book> bookList = bookService.getBookByEditorial(editorialId);
-    return ResponseEntity.ok().body(bookMapper.listBookToListBookResponseDTO(bookList));
+    return ResponseEntity.ok().body(bookMapper.listBookToListBookResponseDto(bookList));
   }
 
   @GetMapping(value = "/{bookId}")
   public ResponseEntity<BookResponseDTO> getBookById(@PathVariable Long bookId) {
     Book book = bookService.getBookById(bookId);
-    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDTO(book));
+    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDto(book));
+  }
+
+  @PostMapping("/{bookId}/gender/{genderId}")
+  public ResponseEntity<BookResponseDTO> assignGender(@PathVariable Long bookId, @PathVariable Long genderId) {
+    Book book = bookService.assignGender(bookId, genderId);
+    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDto(book));
+  }
+
+  @DeleteMapping("/{bookId}/gender/{genderId}")
+  public ResponseEntity<BookResponseDTO> unassignGender(@PathVariable Long bookId, @PathVariable Long genderId) {
+    Book book = bookService.unassignGender(bookId, genderId);
+    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDto(book));
   }
 
   @PostMapping
@@ -52,7 +64,7 @@ public class BookController {
 
     Book savedBook = bookService.createBook(book, bookDTO.getAuthorId(), bookDTO.getEditorialId());
 
-    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDTO(savedBook));
+    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDto(savedBook));
   }
 
   @PutMapping(value = "/{bookId}")
@@ -61,12 +73,12 @@ public class BookController {
 
     Book updatedBook = bookService.updateBook(bookId, book, bookDTO.getAuthorId(), bookDTO.getEditorialId());
 
-    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDTO(updatedBook));
+    return ResponseEntity.ok().body(bookMapper.bookToBookResponseDto(updatedBook));
   }
 
   @DeleteMapping(value = "/{bookId}")
-  public ResponseEntity<Void> deleteBook(@PathVariable Long bookId) {
-    bookService.deleteBook(bookId);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<String> deleteBook(@PathVariable Long bookId) {
+    String message = bookService.deleteBook(bookId);
+    return ResponseEntity.ok().body(message);
   }
 }

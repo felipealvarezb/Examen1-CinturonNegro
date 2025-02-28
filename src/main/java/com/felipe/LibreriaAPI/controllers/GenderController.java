@@ -22,7 +22,7 @@ public class GenderController {
 
   @PostMapping
   public ResponseEntity<GenderResponseDTO> createGender(@Validated @RequestBody GenderDTO genderDTO) {
-    Gender gender = genderMapper.gentDtoToGender(genderDTO);
+    Gender gender = genderMapper.genderDtoToGender(genderDTO);
 
     Gender createdGender = genderService.createGender(gender);
 
@@ -31,7 +31,7 @@ public class GenderController {
 
   @PutMapping(value = "/{genderId}")
   public ResponseEntity<GenderResponseDTO> updateGender(@PathVariable Long genderId, @Validated @RequestBody GenderDTO genderDTO) {
-    Gender gender = genderMapper.gentDtoToGender(genderDTO);
+    Gender gender = genderMapper.genderDtoToGender(genderDTO);
 
     Gender updatedGender = genderService.updateGender(genderId, gender);
 
@@ -39,8 +39,8 @@ public class GenderController {
   }
 
   @DeleteMapping(value = "/{genderId}")
-  public ResponseEntity<GenderResponseDTO> deleteGender(@PathVariable Long genderId) {
-    genderService.deleteGender(genderId);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<String> deleteGender(@PathVariable Long genderId) {
+    String message = genderService.deleteGender(genderId);
+    return ResponseEntity.ok().body(message);
   }
 }
